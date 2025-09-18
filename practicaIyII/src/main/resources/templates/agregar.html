@@ -176,6 +176,10 @@
                   <label for="autor" class="form-label">Autor</label>
                   <input th:field="*{autor}" type="text" class="form-control" id="autor" placeholder="Ingrese al autor" required>
               </div>
+              <div class="mb-3">
+                  <label for="fecha" class="form-label">Fecha</label>
+                  <input th:field="*{fecha}" type="date" class="form-control" id="fecha" placeholder="Ingrese la fecha de publicación" required>
+              </div>
               <button type="submit" class="btn btn-success">Agregar</button>
               <a th:href="@{/}" class="btn btn-danger">Cancelar</a>
           </form>
