@@ -4,6 +4,7 @@ public class Libro {
     private int id;
     private String titulo;
     private String autor;
+    private String fecha;
 
     private Usuario usuario; // dueño del libro
 
@@ -19,4 +20,7 @@ public class Libro {
 
     public Usuario getUsuario() { return usuario; }
     public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+
+    public Usuario getFecha() { return fecha; }
+    public void setFecha(String fecha) { this.fecha = fecha; }
 }
