@@ -132,6 +132,10 @@
                                     <label for="autor" class="form-label">Autor</label>
                                     <input th:field="*{autor}" type="text" class="form-control" id="autor" required>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="fecha" class="form-label">Fecha</label>
+                                    <input th:field="*{fecha}" type="text" class="form-control" id="fecha" required>
+                                </div>
                                 <div class="d-flex gap-2">
                                     <button type="submit" class="btn btn-success">Guardar</button>
                                     <a th:href="@{/}" class="btn btn-danger">Cancelar</a>
