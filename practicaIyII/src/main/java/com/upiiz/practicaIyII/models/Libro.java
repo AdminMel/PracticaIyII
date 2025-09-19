@@ -18,9 +18,9 @@ public class Libro {
     public String getAutor() { return autor; }
     public void setAutor(String autor) { this.autor = autor; }
 
+    public String getFecha() { return fecha; }
+    public void setFecha(String fecha) { this.fecha = fecha; }
+
     public Usuario getUsuario() { return usuario; }
     public void setUsuario(Usuario usuario) { this.usuario = usuario; }
-
-    public Usuario getFecha() { return fecha; }
-    public void setFecha(String fecha) { this.fecha = fecha; }
 }

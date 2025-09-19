@@ -1,14 +1,28 @@
-# Etapa 1: compilar con Maven y JDK 17
-FROM maven:3.9-eclipse-temurin-17 AS builder
-WORKDIR /build
-COPY pom.xml .
-RUN mvn -q -e -U -B -DskipTests dependency:go-offline
-COPY src ./src
-RUN mvn -q -e -B -DskipTests clean package
-
-# Etapa 2: ejecutar solo con JDK liviano
-FROM amazoncorretto:17-alpine-jdk
+# ===== Build stage =====
+FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
-COPY --from=builder /build/target/*.jar app.jar
+
+# Copia wrapper y POM primero para aprovechar cache
+COPY .mvn .mvn
+COPY mvnw pom.xml ./
+
+# Descarga dependencias (sin tests) para cachear
+RUN ./mvnw -q -DskipTests dependency:go-offline
+
+# Copia el resto del código
+COPY src ./src
+
+# Empaqueta (sin tests)
+RUN ./mvnw -q -DskipTests package
+
+# ===== Run stage =====
+FROM eclipse-temurin:21-jre AS run
+WORKDIR /app
+
+# Copia el jar generado
+COPY --from=build /app/target/*.jar app.jar
+
+# Render te asigna un puerto en $PORT. Forzamos Spring a usarlo.
+ENV JAVA_OPTS=""
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app/app.jar"]
+CMD ["sh", "-c", "java $JAVA_OPTS -Dserver.port=${PORT:-8080} -jar app.jar"]
