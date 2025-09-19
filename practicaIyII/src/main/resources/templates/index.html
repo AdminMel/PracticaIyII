@@ -191,7 +191,7 @@
                                           <td th:text="${libro.id}"></td>
                                           <td th:text="${libro.titulo}"></td>
                                           <td th:text="${libro.autor}"></td>
-                                          <td th:text="${libro.fecha}"></td>
+                                          <td th:text="${libro.fecha}">?</td>
                                           <td>
                                               <a th:href="@{/actualizar/{id}(id=${libro.id})}" class="btn btn-info">Actualizar</a><!--Aquí usamos bootstrap para-->
                                               <a th:href="@{/eliminar/{id}(id=${libro.id})}" class="btn btn-danger">Eliminar</a><!--poner botones con estilos-->
